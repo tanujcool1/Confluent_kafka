@@ -4,7 +4,7 @@ from confluent_kafka import Consumer
 from confluent_kafka.serialization import SerializationContext, MessageField
 from confluent_kafka.schema_registry.json_schema import JSONDeserializer
 
-
+# all the data is same from the producer 
 API_KEY = 'W6WRGH7CC5F5JMHX'
 ENDPOINT_SCHEMA_URL  = 'https://psrc-l6oz3.us-east-2.aws.confluent.cloud'
 API_SECRET_KEY = 'xnEr1SznI1jUAnmcnUsIbfUElAb5DZF2Yv62NEs28XokYjaB7+fgSv2W1RcVgk7L'
@@ -125,7 +125,7 @@ def main(topic):
     consumer_conf.update({
                      'group.id': 'group1',
                      'auto.offset.reset': "latest"})
-                      # "latest" for latest data consumption by consumer
+                      # "latest" for latest data consumption by consumer  and earliest for msg from the begining.
 
     consumer = Consumer(consumer_conf)
     consumer.subscribe([topic])
