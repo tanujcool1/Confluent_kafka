@@ -33,8 +33,8 @@ FILE_PATH = "D:\BIG_DATA\I neuron\Confluent-Kafka-Setup-main\Confluent-Kafka-Set
 columns=['car_name', 'brand', 'model', 'vehicle_age', 'km_driven', 'seller_type',
        'fuel_type', 'transmission_type', 'mileage', 'engine', 'max_power',
        'seats', 'selling_price']
-
-API_KEY = 'W6WRGH7CC5F5JMHX'
+# get these details from the api keys downloaded and schema keys downloaded
+API_KEY = 'W6WRGH7CC5F5JMHX'   
 ENDPOINT_SCHEMA_URL  = 'https://psrc-l6oz3.us-east-2.aws.confluent.cloud'
 API_SECRET_KEY = 'xnEr1SznI1jUAnmcnUsIbfUElAb5DZF2Yv62NEs28XokYjaB7+fgSv2W1RcVgk7L'
 BOOTSTRAP_SERVER = 'pkc-xrnwx.asia-south2.gcp.confluent.cloud:9092'
@@ -207,7 +207,8 @@ def main(topic):
                             key=string_serializer(str(uuid4()), car_to_dict),
                             value=json_serializer(car, SerializationContext(topic, MessageField.VALUE)),
                             on_delivery=delivery_report)
-            #break
+            break
+              #remove break to make the program run continuesly.
     except KeyboardInterrupt:
         pass
     except ValueError:
@@ -216,5 +217,5 @@ def main(topic):
 
     print("\nFlushing records...")
     producer.flush()
-
+       #test-topic-1 needs to be changed with the topic name you give at the time of creation.
 main("test-topic-1")
